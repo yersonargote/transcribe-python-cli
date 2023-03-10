@@ -21,8 +21,14 @@ pip install -r requirements.txt
 
 ```bash
 python3 main.py url-youtube-video model-name
-# Example
+```
+
+```bash
+# Transcribe
 python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small
+
+# Translate
+python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small --translate 
 ```
 
 ## Problems and solutions
