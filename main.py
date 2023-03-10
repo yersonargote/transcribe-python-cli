@@ -34,11 +34,12 @@ def transcribe(
         os.makedirs(path)
 
     video = pytube.YouTube(url)
+    title = video.title.replace(" ", "_")
     audio = video.streams.get_audio_only()
-    audio.download(filename=f"{path}/tmp.mp3")
+    audio.download(filename=f"{path}/{title}.mp3")
 
     model = whisper.load_model(model)
-    result = model.transcribe(f"{path}/tmp.mp3")
+    result = model.transcribe(f"{path}/{title}.mp3")
 
     with open(f"{path}/result.txt", "w") as f:
         f.write(result["text"])
