@@ -36,7 +36,7 @@ def transcribe(model: str, path: str, mode: str) -> None:
 
 
 @app.command()
-def openai(
+def whisper_cli(
     url: str = typer.Argument(..., help="Youtube video url"),
     model: str = typer.Argument(default="small", help="Name of the model to use"),
     translate: bool = typer.Option(False, help="Translate the video"),

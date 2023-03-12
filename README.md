@@ -9,17 +9,16 @@
 ## Install dependencies
 
 ```bash
-python3 -m venv venv
-
-source ./venv/bin/activate
+pipenv install
 ```
 
-```bash
-pip install -r requirements.txt
-```
 ## Run
 
+- ***Option 1***
+
 ```bash
+pipenv shell
+
 python3 main.py url-youtube-video model-name
 ```
 
@@ -29,6 +28,12 @@ python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small
 
 # Translate
 python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small --translate 
+```
+
+- ***Option 2***
+
+```bash
+pipenv run python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small
 ```
 
 ## Problems and solutions
