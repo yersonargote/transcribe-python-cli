@@ -1,4 +1,5 @@
 import os
+import shutil
 from datetime import datetime
 
 import pytube
@@ -26,6 +27,10 @@ def download_audio(url: str, path: str) -> None:
     audio.download(filename=f"{path}/temp.mp3")
 
 
+def move(src: str, dest: str) -> None:
+    shutil.move(f"{src}", f"{dest}/temp.mp3")
+
+
 def transcribe(model: str, path: str, mode: str) -> None:
     model = whisper.load_model(model)
     result = model.transcribe(f"{path}/temp.mp3", task=mode)
@@ -37,9 +42,10 @@ def transcribe(model: str, path: str, mode: str) -> None:
 
 @app.command()
 def whisper_cli(
-    url: str = typer.Argument(..., help="Youtube video url"),
+    url: str = typer.Argument(..., help="Youtube video url or video/audio path"),
     model: str = typer.Argument(default="small", help="Name of the model to use"),
     translate: bool = typer.Option(False, help="Translate the video"),
+    youtube: bool = typer.Option(True, help="Use pytuve to download the video"),
 ):
     """
     Transcribe or translate a Youtube video given an URL.
@@ -53,8 +59,12 @@ def whisper_cli(
         print("Transcribing video...")
 
     path = get_path()
-    download_audio(url=url, path=path)
-    transcribe(model=model, path=path, mode=mode)
+    if youtube:
+        download_audio(url=url, path=path)
+        transcribe(model=model, path=path, mode=mode)
+    else:
+        move(url, path)
+        transcribe(model=model, path=path, mode=mode)
 
 
 if __name__ == "__main__":

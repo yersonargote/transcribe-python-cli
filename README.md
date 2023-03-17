@@ -22,12 +22,14 @@ pipenv shell
 python3 main.py url-youtube-video model-name
 ```
 
+### Youtube video/audio
+
 ```bash
 # Transcribe
 python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small
 
 # Translate
-python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small --translate 
+python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small --translate
 ```
 
 - ***Option 2***
@@ -35,6 +37,17 @@ python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small --translate
 ```bash
 pipenv run python3 main.py https://www.youtube.com/watch?v=9bZkp7q19f0 small
 ```
+
+### Local video/audio
+
+```bash
+# Transcribe
+python3 main.py ./audio.mp3 small --no-youtube
+
+# Translate
+python3 main.py ./audio.mp3 small --translate --no-youtube
+```
+
 
 ## Problems and solutions
 
