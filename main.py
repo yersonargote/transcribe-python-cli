@@ -4,9 +4,8 @@ from datetime import datetime
 
 import pytube
 import typer
-from rich import print
-
 import whisper
+from rich import print
 
 app = typer.Typer()
 
@@ -61,10 +60,9 @@ def whisper_cli(
     path = get_path()
     if youtube:
         download_audio(url=url, path=path)
-        transcribe(model=model, path=path, mode=mode)
     else:
         move(url, path)
-        transcribe(model=model, path=path, mode=mode)
+    transcribe(model=model, path=path, mode=mode)
 
 
 if __name__ == "__main__":
